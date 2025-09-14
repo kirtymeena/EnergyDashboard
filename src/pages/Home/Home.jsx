@@ -1,5 +1,5 @@
 import './home.scss'
-import SnackBar from '../../components/snackbar/Snackbar'
+import SnackBar from '../../components/SnackBar/SnackBar'
 import Header from '../../components/Header/Header'
 import Cards from '../../components/cards/Cards'
 import { FaArrowTrendUp } from "react-icons/fa6";
