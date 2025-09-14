@@ -1,5 +1,5 @@
 import './home.scss'
-import SnackBar from '../../components/SnackBar/SnackBar'
+// import SnackBar from '../../components/SnackBar/SnackBar'
 import Header from '../../components/Header/Header'
 import Cards from '../../components/cards/Cards'
 import { FaArrowTrendUp } from "react-icons/fa6";
@@ -49,7 +49,7 @@ function Home() {
                     <TotalViewCard title="CO2e" centerText={"2.595Kg"} content={["Avaoided", "Power Grid", "Generators"]} btn={"See Last Month's Data"} />
                 </div>
             </div>
-            <SnackBar />
+            {/* <SnackBar /> */}
         </div>
     )
 }
