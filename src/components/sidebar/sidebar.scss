@@ -1,0 +1,79 @@
+.sidebar__container {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+    position: fixed;
+    min-height: 100%;
+    background-color: #032313;
+    color: #f4f4f4;
+    gap: 4rem;
+    // position: relative;
+    padding-top: 0.5rem
+}
+
+.sidebar__logo {
+    padding: 16px;
+    font-size: 20px;
+    // padding-top: 20px
+}
+
+.menu__options {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    // align-items: center;
+}
+
+.options {
+    padding-inline: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem
+}
+
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #e9e9e9e3;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.option:hover {
+    background-color: #397968;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.option-selected {
+    svg {
+        stroke: #aedf33;
+    }
+
+    #menu,
+    #chart {
+        fill: #aedf33
+    }
+
+    background-color: #397968;
+    border-radius: 4px;
+
+}
+
+
+.sidebar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem
+}
+
+.user__login {
+    padding: 16px;
+    position: absolute;
+    bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem
+}

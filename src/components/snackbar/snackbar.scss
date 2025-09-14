@@ -1,0 +1,39 @@
+@use "../../sass/utils/breakpoints" as *;
+
+.snackbtn {
+    position: absolute;
+    bottom: 2rem;
+    margin: auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    @include md {
+        display: none
+    }
+
+}
+
+.snackbtn {
+    button {
+        background-color: #39796865;
+        border-radius: 50%;
+        aspect-ratio: 1;
+    }
+}
+
+.snackbtn .MuiSnackbarContent-root {
+    background-color: #032313 !important;
+    width: 100% !important
+}
+
+.snackbar__content {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.MuiSnackbarContent-message {
+    width: 100%
+}

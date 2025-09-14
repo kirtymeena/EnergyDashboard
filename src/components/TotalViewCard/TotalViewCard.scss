@@ -1,0 +1,153 @@
+@use "../../sass/utils/breakpoints" as *;
+
+.total-card {
+    background: #ffffff;
+    border: 2px solid #e7e7e7;
+    border-radius: 18px;
+    padding: 18px 20px 22px;
+    box-shadow: 0 2px 18px rgba(16, 24, 40, 0.06);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: #252525;
+    display: flex;
+    width: 320px;
+    flex-direction: column;
+    align-items: stretch;
+
+    @include lg {
+        width: 100%;
+    }
+
+}
+
+.card-title {
+    text-align: center;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+
+.card-separator {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.05);
+    margin-bottom: 6px;
+}
+
+.donut-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6px;
+}
+
+/* center circle */
+.donut-center {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+}
+
+.center-sub {
+    font-size: 12px;
+    color: #9aa0a6;
+}
+
+.center-main {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 4px;
+}
+
+/* small white badges */
+.badge {
+    position: absolute;
+    background: #ffffff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+    font-weight: 700;
+}
+
+.badge-top-right {
+    right: 36px;
+    top: 70px;
+}
+
+.badge-top-left {
+    left: 50px;
+    top: 42px;
+}
+
+.badge-bottom-left {
+    left: 40px;
+    bottom: 48px;
+}
+
+.card-tip {
+    text-align: center;
+    color: #8c9496;
+    font-size: 13px;
+    margin: 18px 12px 18px 12px;
+}
+
+.guide-btn {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: transparent;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: center;
+    width: 90%;
+}
+
+.legend {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    align-items: center;
+}
+
+.legend-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 13px;
+    color: #666;
+}
+
+.legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Responsive tweaks */
+@media (max-width: 380px) {
+    .total-card {
+        width: 100%;
+        padding: 14px
+    }
+
+    .donut-center {
+        width: 120px;
+        height: 120px
+    }
+
+    .center-main {
+        font-size: 30px
+    }
+}

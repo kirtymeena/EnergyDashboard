@@ -1,0 +1,117 @@
+@use "../../sass/utils/breakpoints" as *;
+
+.card__container {
+    border: 2px solid #e7e7e7;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+    @include md {
+        width: 32%;
+    }
+
+    height: 12rem;
+    border-radius: 20px;
+    padding-inline: 12px;
+    padding-block: 8px;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card__body-sm {
+    display: flex;
+    flex-direction: column;
+    // gap: 0.2rem;
+}
+
+.card__container-dark {
+    background-color: #092C1B;
+    border: 2px solid #092C1B;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+    @include md {
+        width: 32%;
+    }
+
+    height: 12rem;
+    border-radius: 20px;
+    padding-inline: 12px;
+    padding-block: 8px;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color:rgba(255, 255, 255, 0.901)
+}
+
+.card__title {
+    p {
+        font-weight: 400;
+        font-size: 14px;
+    }
+}
+
+.card__body {
+    p {
+        // font-size: 18px;
+        font-weight: 600;
+        font-size: 30px;
+
+        @include md {
+            font-size: 40px;
+        }
+
+    }
+}
+
+.p-12 {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.425)
+}
+
+.p-20 {
+    font-size: 20px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 0, 0, 0.995);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+
+    // Pulse animation
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: rgba(255, 0, 0, 0.425);
+        transform: translate(-50%, -50%);
+        animation: pulse 1s infinite;
+    }
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0.7;
+    }
+}
+
+.card__footer-alert:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
