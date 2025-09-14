@@ -1,11 +1,11 @@
-import "./snackbar.scss"
+import "./bar.scss"
 import Snackbar from '@mui/material/Snackbar';
 import { MdBarChart } from "react-icons/md";
 import MenuIcon from "../icons/MenuIcon";
 import Product from "../icons/Product";
 import Transaction from "../icons/Transaction";
 import { useState } from "react";
-function SnackBar() {
+function Bar() {
     const [isSelected, setIsSelected] = useState(1)
     const handleOptions = (id) => {
         setIsSelected(id)
@@ -54,4 +54,4 @@ function SnackBar() {
     )
 }
 
-export default SnackBar
+export default Bar

@@ -1,5 +1,4 @@
 import './home.scss'
-// import SnackBar from '../../components/SnackBar/SnackBar'
 import Header from '../../components/Header/Header'
 import Cards from '../../components/cards/Cards'
 import { FaArrowTrendUp } from "react-icons/fa6";
@@ -10,6 +9,7 @@ import SalesReportCard from '../../components/SalesCard/SalesCard';
 import TotalViewCard from '../../components/TotalViewCard/TotalViewCard';
 import { Divider } from '@mui/material';
 import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
+import Bar from '../../components/bar/bar';
 
 
 function Home() {
@@ -49,7 +49,7 @@ function Home() {
                     <TotalViewCard title="CO2e" centerText={"2.595Kg"} content={["Avaoided", "Power Grid", "Generators"]} btn={"See Last Month's Data"} />
                 </div>
             </div>
-            {/* <SnackBar /> */}
+            <Bar />
         </div>
     )
 }
