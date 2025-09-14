@@ -9,7 +9,7 @@ import SalesReportCard from '../../components/SalesCard/SalesCard';
 import TotalViewCard from '../../components/TotalViewCard/TotalViewCard';
 import { Divider } from '@mui/material';
 import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
-import Bar from '../../components/bar/bar';
+import Bar from '../../components/bar/Bar';
 
 
 function Home() {
