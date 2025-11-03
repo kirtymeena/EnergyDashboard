@@ -3,15 +3,18 @@ import SearchBar from "../searchbar/Searchbar";
 import "./header.scss"
 import TextField from '@mui/material/TextField';
 
-function Header() {
+function Header({ userLoggedIn }) {
     return (
-        <div className="header__container">
+        <div className="header__container" style={{ background: !userLoggedIn ? "rgb(3, 35, 19)" : "white" }}>
             <div className="left__section">
                 {/* <Dropdown /> */}
-                <p className="p-bold">Demo</p>
+                <p className={`p-bold ${!userLoggedIn && 'p-white'}`}>Demo</p>
             </div>
             <div className="right__section">
-                <SearchBar />
+                {
+                    userLoggedIn &&
+                    <SearchBar />
+                }
             </div>
         </div>
     )
