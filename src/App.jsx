@@ -14,7 +14,7 @@ function App() {
   const [mapData, setMapData] = useState(null)
 
   const fetchData = async () => {
-    const res = await axios.get("/bms/site_view/pull_values_api.php")
+    const res = await axios.get("https://vcind.in/bms/site_view/pull_values_api.php")
     console.log(res)
     const data = res.data
     return [
