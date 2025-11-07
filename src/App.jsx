@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import Login from "./components/Login/Login"
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
+import NotFound from "./components/notFound/NotFound"
 
 function App() {
 
@@ -14,7 +15,11 @@ function App() {
   const [mapData, setMapData] = useState(null)
 
   const fetchData = async () => {
+    //deployed
     const res = await axios.get("/api/proxy");
+
+    //local
+    // const res = await axios.get("/bms/site_view/pull_values_api.php")
 
     console.log(res)
     const data = res.data
@@ -124,6 +129,8 @@ function App() {
 
             <Route element={<Layout />}>
               <Route index path="/" element={<Home siteDataArray={data} map={mapData} />} />
+              <Route path="/Reports" element={<NotFound />} />
+              <Route path="/Configuration" element={<NotFound />} />
             </Route> :
             <Route>
               <Route index path="/" element={<Login userLoggedIn={userLoggedIn} />} />

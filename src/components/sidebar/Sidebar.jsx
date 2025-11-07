@@ -12,33 +12,31 @@ function Sidebar() {
         {
             id: 1,
             title: 'Dashbaord',
-            icon: <MenuIcon />
+            icon: <MenuIcon />,
+            link: ""
         },
         {
             id: 2,
-            title: 'Statistics',
-            icon: <MdBarChart size={"24px"} id="chart" />
+            title: 'Reports',
+            icon: <MdBarChart size={"24px"} id="chart" />,
+            link: "Reports"
         },
         {
             id: 3,
-            title: 'Products',
-            icon: <Product />
+            title: 'Configuration',
+            icon: <Product />,
+            link: "Configuration"
         },
-        {
-            id: 4,
-            title: 'Transactions',
-            icon: <Transaction />
-        }
     ]
 
-    const generalOptions = [
-        {
-            id: 1.1,
-            title: 'Settings',
-            icon: <IoMdSettings size={"24px"} id="chart" />
+    // const generalOptions = [
+    //     {
+    //         id: 1.1,
+    //         title: 'Settings',
+    //         icon: <IoMdSettings size={"24px"} id="chart" />
 
-        }
-    ]
+    //     }
+    // ]
 
     const handleOptions = (id) => {
         setIsSelected(id)
@@ -54,16 +52,16 @@ function Sidebar() {
                     {
                         menuOptions.map(option =>
 
-                            <div className={`option ${isSelected === option.id && 'option-selected'}`} onClick={() => handleOptions(option.id)}>
+                            <Link to={`${option.link}`} className={`option ${isSelected === option.id && 'option-selected'}`} onClick={() => handleOptions(option.id)}>
                                 {option.icon}
                                 {option.title}
-                            </div>
+                            </Link>
                         )
                     }
                 </div>
-                <Divider variant="middle" style={{ borderColor: "rgb(233 233 233 / 24%)" }} />
+                {/* <Divider variant="middle" style={{ borderColor: "rgb(233 233 233 / 24%)" }} /> */}
 
-                <div className='options'>
+                {/* <div className='options'>
                     {
                         generalOptions.map(option =>
 
@@ -73,7 +71,7 @@ function Sidebar() {
                             </div>
                         )
                     }
-                </div>
+                </div> */}
             </div>
             <Divider variant="middle" style={{ borderColor: "rgb(233 233 233 / 24%)" }} />
 
@@ -89,5 +87,6 @@ import MenuIcon from '../icons/MenuIcon';
 import Logo from '../icons/Logo';
 import Product from '../icons/Product';
 import Transaction from '../icons/Transaction';
+import { Link } from 'react-router';
 
 export default Sidebar
