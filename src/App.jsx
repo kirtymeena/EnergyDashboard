@@ -41,7 +41,7 @@ function App() {
           },
           {
             title: "AH Capacity",
-            value: data.ah_capacity
+            value: data.ah_capacity + "AH"
           },
           {
             title: "Manufacturer Name",
@@ -49,11 +49,11 @@ function App() {
           },
           {
             title: "Design Voltage",
-            value: data.design_voltage
+            value: data.design_voltage + "V"
           },
           {
             title: "Individual Cell Voltage",
-            value: data.design_voltage,
+            value: data.design_voltage + "Volts",
           }
         ],
       },
@@ -63,8 +63,8 @@ function App() {
           { title: "String Voltage", value: "--V" },
           { title: "Door Status", value: data.Door_status },
           { title: "Fiber Status", value: data.fiber_cut },
-          { title: "Room Temperature", value: data.temp },
-          { title: "Room Humidity", value: data.hum },
+          { title: "Room Temperature", value: data.temp + "°C" },
+          { title: "Room Humidity", value: data.hum + "%" },
           { title: "Reading Time", value: data.reading_time },
         ],
       },
