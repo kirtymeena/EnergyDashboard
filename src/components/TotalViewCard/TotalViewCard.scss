@@ -1,6 +1,7 @@
 @use "../../sass/utils/breakpoints" as *;
 
 .total-card {
+    height: 50%;
     background: #ffffff;
     border: 2px solid #e7e7e7;
     border-radius: 18px;
@@ -38,6 +39,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 6px;
+    height: 100%;
 }
 
 /* center circle */

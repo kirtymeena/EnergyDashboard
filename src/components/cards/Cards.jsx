@@ -1,35 +1,43 @@
 import React from 'react'
 import "./card.scss";
-import { FaArrowTrendUp } from "react-icons/fa6";
+import { IoBatteryChargingOutline } from "react-icons/io5";
 
 
-function Cards({ type, title, amount, message, icon, number, color }) {
-    if (type !== "update")
-        return (
-            <div className='card__container'>
-                <div className='card__title'>
-                    <p>{title}</p>
-                </div>
-                <div className='card__body'>
-                    <p><sup>$</sup>{amount}</p>
-                </div>
-                <div className='card__footer'>
-                    <p><span>{icon}</span> <span style={{ color: color }}>{number}</span> {message}</p>
-                </div>
-            </div >
-        )
+function Cards({ title, data }) {
     return (
-        <div className='card__container-dark'>
+        <div className='card__container'>
             <div className='card__title'>
-                <span className="dot"></span> Update
+                {
+                    title === "Site Info" ? <p style={{ visibility: "hidden" }}>{title}</p> :
+                        <strong>{title}</strong>
+                }
             </div>
-            <div className='card__body-sm'>
-                <p className='p-12'>Feb 4, 2024</p>
-                <p className='p-20'>Battery Bank voltage low</p>
-            </div>
-            <div className='card__footer-alert'>
-                see statistics
-            </div>
+            {title !== "Battery" ?
+                <div className='card__body'>
+                    {
+                        data?.map(content =>
+                            <div className='card__inner'>
+                                <div className='semi-bold'>{content?.title}</div>
+                                <div>{content?.value}</div>
+                            </div>
+                        )
+                    }
+
+                </div>
+                :
+                <div className='card__body-icon'>
+                    {
+                        data?.map(content =>
+                            <div className='card__inner-icon'>
+                                <IoBatteryChargingOutline size={45} color={content.value < 1.2 ? "#991b1b" : "#052e16"} />
+                                <small className='semi-bold'>{content?.title}</small>
+                                <small>{content?.value} V</small>
+                                <small>--°C</small>
+                            </div>
+                        )
+                    }
+                </div>
+            }
         </div>
     )
 }

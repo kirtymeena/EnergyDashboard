@@ -12,7 +12,7 @@ import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 import Bar from '../../components/bar/Bar';
 
 
-function Home() {
+function Home({ siteDataArray }) {
     return (
         <div className='home__container'>
             <Header />
@@ -27,26 +27,21 @@ function Home() {
                         </div>
                     </div>
                     <div className='home__body'>
-                        <Cards type="update" />
+                        {
+                            siteDataArray?.map(data =>
+                                // data.section !== "map" &&
+                                <Cards type={data.section} title={data.section} data={data.data} color={"#79BB7B"} />
+                            )
+                        }
 
-                        <Cards type="sales" title="Power Generation" amount="30.08" number={"26.98%"} message={`KW`} icon={<FaArrowTrendUp color={"#79BB7B"} />} color={"#79BB7B"} />
-
-                        <Cards type="income" title="Total Now" amount="32.00" number={"-24%"} message={`from last month`} icon={<FaArrowTrendDown color={"#E7605C"} />} color={"#E7605C"} />
-                    </div>
-                    <div className='home__body-lower'>
-                        <div><Sites /></div>
-                        <div className='details__card'>
-                            <RevenueCard />
-                            {/* <SalesReportCard /> */}
-                        </div>
                     </div>
                 </div>
                 <div className='divider'>
                     <Divider variant="middle" style={{ borderColor: "#e7e7e7" }} orientation="vertical" />
                 </div>
                 <div className='home__left'>
-                    <TotalViewCard title="Cost Of Energy" centerText={"2.595K"} content={["Avaoided", "Power Grid", "Generators"]} btn={"See Last Month's Data"} />
-                    <TotalViewCard title="CO2e" centerText={"2.595Kg"} content={["Avaoided", "Power Grid", "Generators"]} btn={"See Last Month's Data"} />
+                    <TotalViewCard title="Device Location" />
+                    {/* <TotalViewCard title="CO2e" centerText={"2.595Kg"} content={["Avaoided", "Power Grid", "Generators"]} btn={"See Last Month's Data"} /> */}
                 </div>
             </div>
             <Bar />
