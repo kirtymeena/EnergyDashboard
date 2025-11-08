@@ -5,34 +5,13 @@ import MenuIcon from "../icons/MenuIcon";
 import Product from "../icons/Product";
 import Transaction from "../icons/Transaction";
 import { useState } from "react";
-function Bar() {
-    const [isSelected, setIsSelected] = useState(1)
-    const handleOptions = (id) => {
+import { Link } from "react-router";
+function Bar({ menuOptions, isSelected, setIsSelected, selectedLink, setSelectedLink }) {
+    // const [isSelected, setIsSelected] = useState(1)
+    const handleOptions = (id, title) => {
         setIsSelected(id)
+        setSelectedLink(title)
     }
-    const menuOptions = [
-        {
-            id: 1,
-            title: 'Dashbaord',
-            icon: <MenuIcon />
-        },
-        {
-            id: 2,
-            title: 'Statistics',
-            icon: <MdBarChart size={"24px"} id="chart" />
-        },
-        {
-            id: 3,
-            title: 'Products',
-            icon: <Product />
-        },
-        {
-            id: 4,
-            title: 'Transactions',
-            icon: <Transaction />
-        }
-    ]
-
     return (
         <div className='snackbtn'>
             <Snackbar
@@ -42,9 +21,9 @@ function Bar() {
                     <div className="snackbar__content">
                         {
                             menuOptions.map(option =>
-                                <div className={`option ${isSelected === option.id && 'option-selected'}`} onClick={() => handleOptions(option.id)}>
+                                <Link to={option.link} className={`option ${isSelected === option.id && 'option-selected'}`} onClick={() => handleOptions(option.id, option.title)}>
                                     {option.icon}
-                                </div>
+                                </Link>
                             )}
                     </div>
                 }

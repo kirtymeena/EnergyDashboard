@@ -13,7 +13,7 @@ import Bar from '../../components/bar/Bar';
 import Footer from '../../components/Footer/Footer';
 
 
-function Home({ siteDataArray, map, selectedLink }) {
+function Home({ siteDataArray, map, selectedLink, isSelected, setIsSelected, menuOptions, setSelectedLink }) {
     // const map = siteDataArray?.filter(ele => ele.section === "map")
     return (
         <div className='home__container'>
@@ -45,7 +45,7 @@ function Home({ siteDataArray, map, selectedLink }) {
                     <TotalViewCard title="Device Location" mapURL={map} />
                 </div>
             </div>
-            {/* <Bar /> */}
+            <Bar selectedLink={selectedLink} isSelected={isSelected} setIsSelected={setIsSelected} menuOptions={menuOptions} setSelectedLink={setSelectedLink} />
             <Footer />
         </div>
     )

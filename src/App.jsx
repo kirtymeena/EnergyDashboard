@@ -159,7 +159,7 @@ function App() {
           userLoggedIn ?
 
             <Route element={<Layout />}>
-              <Route index path="/" element={<Home siteDataArray={data} map={mapData} selectedLink={selectedLink} />} />
+              <Route index path="/" element={<Home menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} siteDataArray={data} map={mapData} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />} />
               <Route path="/Reports" element={<NotFound />} />
               <Route path="/Configuration" element={<NotFound />} />
             </Route> :
