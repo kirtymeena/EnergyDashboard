@@ -8,18 +8,41 @@ import Login from "./components/Login/Login"
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
 import NotFound from "./components/notFound/NotFound"
-
+import { MdBarChart } from "react-icons/md";
+import MenuIcon from "./components/icons/MenuIcon"
+import Product from "./components/icons/Product"
 function App() {
 
   const [userLoggedIn, setUserLoggedIn] = useState(true)
   const [mapData, setMapData] = useState(null)
-
+  const [isSelected, setIsSelected] = useState(1)
+  const [selectedLink, setSelectedLink] = useState("Dashboard")
+  const menuOptions = [
+    {
+      id: 1,
+      title: 'Dashbaord',
+      icon: <MenuIcon />,
+      link: ""
+    },
+    {
+      id: 2,
+      title: 'Reports',
+      icon: <MdBarChart size={"24px"} id="chart" />,
+      link: "Reports"
+    },
+    {
+      id: 3,
+      title: 'Configuration',
+      icon: <Product />,
+      link: "Configuration"
+    },
+  ]
   const fetchData = async () => {
     //deployed
-    const res = await axios.get("/api/proxy");
+    // const res = await axios.get("/api/proxy");
 
     //local
-    // const res = await axios.get("/bms/site_view/pull_values_api.php")
+    const res = await axios.get("/bms/site_view/pull_values_api.php")
 
     console.log(res)
     const data = res.data
@@ -91,7 +114,10 @@ function App() {
           { title: "Cell 6", value: data.v6 },
         ]
       },
-
+      {
+        section: "map",
+        data: data.map
+      }
     ];
   }
 
@@ -104,13 +130,18 @@ function App() {
     enabled: userLoggedIn,
   })
 
-
+  useEffect(() => {
+    if (data) {
+      const map = data.filter(ele => ele.section === "map")
+      setMapData(map[0].data)
+    }
+  }, [data])
 
   const Layout = () => {
     return (
       <div className="layout">
         <div className="layout-md">
-          <Sidebar />
+          <Sidebar menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />
           <div className="outlet-md">
             <Outlet />
           </div>
@@ -128,7 +159,7 @@ function App() {
           userLoggedIn ?
 
             <Route element={<Layout />}>
-              <Route index path="/" element={<Home siteDataArray={data} map={mapData} />} />
+              <Route index path="/" element={<Home siteDataArray={data} map={mapData} selectedLink={selectedLink} />} />
               <Route path="/Reports" element={<NotFound />} />
               <Route path="/Configuration" element={<NotFound />} />
             </Route> :

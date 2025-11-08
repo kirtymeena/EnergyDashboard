@@ -1,4 +1,5 @@
 .sidebar__container {
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     width: 12rem;
@@ -14,7 +15,14 @@
 .sidebar__logo {
     padding: 16px;
     font-size: 20px;
-    // padding-top: 20px
+    text-decoration: none;
+    color: white // padding-top: 20px
+}
+
+.logo-text {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
 }
 
 .menu__options {

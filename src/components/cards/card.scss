@@ -1,5 +1,9 @@
 @use "../../sass/utils/breakpoints" as *;
 
+.card__container:hover {
+    transition: 0.3s scale ease-in-out;
+}
+
 .card__container {
     flex-basis: 49%;
     border: 2px solid #e7e7e7;
@@ -144,7 +148,7 @@
 
 .card__body-icon {
     display: flex;
-    gap: 1.5rem;
+    // gap: 1.5rem;
     flex-wrap: wrap;
     align-items: center;
     // justify-content: space-between;

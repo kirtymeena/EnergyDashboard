@@ -10,26 +10,28 @@ import TotalViewCard from '../../components/TotalViewCard/TotalViewCard';
 import { Divider } from '@mui/material';
 import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 import Bar from '../../components/bar/Bar';
+import Footer from '../../components/Footer/Footer';
 
 
-function Home({ siteDataArray }) {
+function Home({ siteDataArray, map, selectedLink }) {
+    // const map = siteDataArray?.filter(ele => ele.section === "map")
     return (
         <div className='home__container'>
-            <Header />
+            <Header selectedLink={selectedLink} />
             <div className='home__wrapper'>
                 <div className='home__right'>
-                    <div className='header__options'>
+                    {/* <div className='header__options'>
                         <div className='header__title'>
                             Dashboard
                         </div>
                         <div className='header__filter' >
                             <AutoAwesomeMosaicIcon />
                         </div>
-                    </div>
+                    </div> */}
                     <div className='home__body'>
                         {
                             siteDataArray?.map(data =>
-                                // data.section !== "map" &&
+                                data.section !== "map" &&
                                 <Cards type={data.section} title={data.section} data={data.data} color={"#79BB7B"} />
                             )
                         }
@@ -40,11 +42,11 @@ function Home({ siteDataArray }) {
                     <Divider variant="middle" style={{ borderColor: "#e7e7e7" }} orientation="vertical" />
                 </div>
                 <div className='home__left'>
-                    <TotalViewCard title="Device Location" />
-                    {/* <TotalViewCard title="CO2e" centerText={"2.595Kg"} content={["Avaoided", "Power Grid", "Generators"]} btn={"See Last Month's Data"} /> */}
+                    <TotalViewCard title="Device Location" mapURL={map} />
                 </div>
             </div>
-            <Bar />
+            {/* <Bar /> */}
+            <Footer />
         </div>
     )
 }

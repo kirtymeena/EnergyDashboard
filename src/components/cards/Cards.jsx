@@ -29,7 +29,7 @@ function Cards({ title, data }) {
                     {
                         data?.map(content =>
                             <div className='card__inner-icon'>
-                                <IoBatteryChargingOutline size={45} color={content.value < 1.2 ? "#991b1b" : "#052e16"} />
+                                <IoBatteryChargingOutline size={59} color={content.value < 1.2 ? "#991b1b" : "#052e16"} />
                                 <small className='semi-bold'>{content?.title}</small>
                                 <small>{content?.value} V</small>
                                 <small>--°C</small>
