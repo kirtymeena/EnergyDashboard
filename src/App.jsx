@@ -39,10 +39,10 @@ function App() {
   ]
   const fetchData = async () => {
     //deployed
-    // const res = await axios.get("/api/proxy");
+    const res = await axios.get("/api/proxy");
 
     //local
-    const res = await axios.get("/bms/site_view/pull_values_api.php")
+    // const res = await axios.get("/bms/site_view/pull_values_api.php")
 
     console.log(res)
     const data = res.data
