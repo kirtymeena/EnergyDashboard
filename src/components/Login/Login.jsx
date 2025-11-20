@@ -73,7 +73,7 @@ function Login(props) {
                         }
                     />
                 </div>
-                <Button variant="contained">Login</Button>
+                <Button type='submit' variant="contained">Login</Button>
 
             </div>
             footer
