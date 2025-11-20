@@ -47,7 +47,7 @@ function App() {
     //for local
     try {
       //deployed
-      const res = axios.get("/api/login")
+      const res = axios.post("/api/login", formData)
       //local
       // const res = await axios.post("/sems/api/login.php", formData)
       console.log(res.data.token)
