@@ -46,7 +46,9 @@ function App() {
     console.log(formData)
     //for local
     try {
-
+      //deployed
+      axios.get("/api/login")
+      //local
       const res = await axios.post("/sems/api/login.php", formData)
       console.log(res.data.token)
       if (res.data?.token) {
@@ -73,10 +75,10 @@ function App() {
   const fetchData = async () => {
     try {
       //deployed
-      // const res = await axios.get("/api/proxy");
+      const res = await axios.get("/api/pull-values");
 
       //local
-      const res = await axios.get("/bms/site_view/pull_values_api.php")
+      // const res = await axios.get("/bms/site_view/pull_values_api.php")
 
       console.log(res)
       const data = res.data
