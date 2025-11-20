@@ -1,0 +1,20 @@
+.table-container {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+td,
+th {
+    // border: 1px solid #c6c5c5;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(odd) {
+    background-color: #dddddd;
+}
+
+// .table-header {
+//     background: #303b4ed2
+// }

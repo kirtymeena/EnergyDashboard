@@ -2,7 +2,6 @@
 
 .home__container {
     min-height: 100vh;
-    border: 1px solid;
     // border: 1px solid pink;
 }
 
@@ -16,6 +15,33 @@
 
     @include lg {
         flex-direction: row;
+    }
+}
+
+.home__wrapper-center {
+    padding-inline: 16px;
+    padding-block: 16px;
+    display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // padding-top: 1rem;
+    // min-height: calc(100vh - 7rem);
+}
+
+.home__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    @include md {
+        flex-direction: row;
+    }
+}
+
+.home_children {
+    @include md {
+        flex: 0 0 calc(33.333% - 1rem);
     }
 }
 

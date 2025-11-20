@@ -1,0 +1,42 @@
+@use "../../sass/utils/breakpoints" as *;
+
+.card_alaram {
+    width: 300px;
+    height: 9rem;
+    cursor: pointer;
+
+    @include md {
+        min-width: 379px;
+    }
+}
+
+.cardAlarm__bottom {
+    margin-top: 1rem;
+}
+
+.cardAlarm_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem
+}
+
+
+.progress {
+    width: 300px;
+    /* adjust as needed */
+    height: 8px;
+    /* thickness */
+    background: #e9f1f5;
+    /* light background */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2ecbff, #29f3c3);
+    border-radius: 10px;
+    transition: width 0.4s ease;
+    /* smooth animation */
+}

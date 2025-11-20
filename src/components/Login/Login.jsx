@@ -7,9 +7,16 @@ import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Button from '@mui/material/Button';
 
 import "./login.scss"
-function Login({ userLoggedIn }) {
+import Logo from '../icons/Logo';
+
+function Login(props) {
+    const [formData, setFormData] = useState({
+        username: "",
+        password: ""
+    })
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -23,21 +30,29 @@ function Login({ userLoggedIn }) {
 
     return (
         <div>
-            <Header userLoggedIn={userLoggedIn} />
+            {/* <Header userLoggedIn={props.userLoggedIn} /> */}
 
             <div className='form-group'>
+                <Logo color={'#aedf33'} />
+
                 <div className='form-input'>
+                    <small className='error-msg'>{props.error}</small>
                     <InputLabel htmlFor="outlined-adornment-password">Username</InputLabel>
                     <OutlinedInput
+                        value={formData.username}
                         style={{ width: "50%" }}
                         id="outlined-adornment-password"
                         type={'text'}
-                        label="Username"
+                        onChange={(e) => setFormData(prev => ({ ...prev, "username": e.target.value }))}
+                    // label="Username"
                     />
+
                 </div>
                 <div className='form-input'>
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
+                        value={formData.password}
+                        onChange={(e) => setFormData(prev => ({ ...prev, "password": e.target.value }))}
                         style={{ width: "50%" }}
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
@@ -56,9 +71,10 @@ function Login({ userLoggedIn }) {
                                 </IconButton>
                             </InputAdornment>
                         }
-                        label="Password"
                     />
                 </div>
+                <Button variant="contained" onClick={() => props.handleSubmit(formData)}>Login</Button>
+
             </div>
             footer
         </div>

@@ -11,6 +11,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/sems': {
+        target: 'https://vcind.in',
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 })

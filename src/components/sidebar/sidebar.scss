@@ -1,3 +1,5 @@
+@use "../../sass/utils/variable" as *;
+
 .sidebar__container {
     text-decoration: none;
     display: flex;
@@ -5,7 +7,7 @@
     width: 12rem;
     position: fixed;
     min-height: 100%;
-    background-color: #032313;
+    background-color: $dashboard-bg;
     color: #f4f4f4;
     gap: 4rem;
     // position: relative;
@@ -51,22 +53,24 @@
 }
 
 .option:hover {
-    background-color: #397968;
+    background-color: $selectedOption;
     padding: 6px;
     border-radius: 4px;
 }
 
 .option-selected {
+    font-weight: 600;
+
     svg {
-        stroke: #aedf33;
+        stroke: $iconColor;
     }
 
     #menu,
     #chart {
-        fill: #aedf33
+        fill: $iconColor
     }
 
-    background-color: #397968;
+    background-color: $selectedOption;
     border-radius: 4px;
 
 }

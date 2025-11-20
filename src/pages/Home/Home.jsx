@@ -1,52 +1,46 @@
 import './home.scss'
 import Header from '../../components/Header/Header'
-import Cards from '../../components/cards/Cards'
-import { FaArrowTrendUp } from "react-icons/fa6";
-import { FaArrowTrendDown } from "react-icons/fa6";
-import Sites from '../../components/Sites/Sites';
-import RevenueCard from '../../components/RevenueCard/RevenueCard';
-import SalesReportCard from '../../components/SalesCard/SalesCard';
-import TotalViewCard from '../../components/TotalViewCard/TotalViewCard';
-import { Divider } from '@mui/material';
-import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
-import Bar from '../../components/bar/Bar';
+// import Cards from '../../components/cards/Cards'
+// import { FaArrowTrendUp } from "react-icons/fa6";
+// import { FaArrowTrendDown } from "react-icons/fa6";
+// import Sites from '../../components/Sites/Sites';
+// import RevenueCard from '../../components/RevenueCard/RevenueCard';
+// import SalesReportCard from '../../components/SalesCard/SalesCard';
+// import TotalViewCard from '../../components/TotalViewCard/TotalViewCard';
+// import { Divider } from '@mui/material';
+// import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
+// import Bar from '../../components/bar/Bar';
 import Footer from '../../components/Footer/Footer';
+// import "primeicons/primeicons.css";
+import AlarmCard from '../../components/cards/AlarmCard';
 
+import { Button } from 'primereact/button';
+import { useState } from 'react';
+import CustomDialog from '../../components/CustomDialog/CustomDialog';
 
-function Home({ siteDataArray, map, selectedLink, isSelected, setIsSelected, menuOptions, setSelectedLink }) {
-    // const map = siteDataArray?.filter(ele => ele.section === "map")
+function Home({ siteDataArray, map, selectedLink, isSelected, setIsSelected, menuOptions, setSelectedLink, setUserLoggedIn }) {
+
+    const [openDialog, setOpenDialog] = useState(false)
     return (
         <div className='home__container'>
-            <Header selectedLink={selectedLink} />
-            <div className='home__wrapper'>
-                <div className='home__right'>
-                    {/* <div className='header__options'>
-                        <div className='header__title'>
-                            Dashboard
-                        </div>
-                        <div className='header__filter' >
-                            <AutoAwesomeMosaicIcon />
-                        </div>
-                    </div> */}
-                    <div className='home__body'>
-                        {
-                            siteDataArray?.map(data =>
-                                data.section !== "map" &&
-                                <Cards type={data.section} title={data.section} data={data.data} color={"#79BB7B"} />
-                            )
-                        }
-
+            <Header selectedLink={selectedLink} setUserLoggedIn={setUserLoggedIn} />
+            <div className='home__wrapper-center'>
+                <div className='home__inner'>
+                    <div className='home__children'>
+                        <AlarmCard open={openDialog} setOpenDialog={setOpenDialog} />
+                    </div>
+                    <div className='home__children'>
+                        <AlarmCard />
+                    </div>
+                    <div className='home__children'>
+                        <AlarmCard />
+                    </div>
+                    <div className='home__children'>
+                        <AlarmCard />
                     </div>
                 </div>
-                <div className='divider'>
-                    <Divider variant="middle" style={{ borderColor: "#e7e7e7" }} orientation="vertical" />
-                </div>
-                <div className='home__left'>
-                    <TotalViewCard title="Device Location" mapURL={map} />
-                </div>
+                <CustomDialog open={openDialog} setOpenDialog={setOpenDialog} />
             </div>
-            <Bar selectedLink={selectedLink} isSelected={isSelected} setIsSelected={setIsSelected} menuOptions={menuOptions} setSelectedLink={setSelectedLink} />
-            <Footer />
         </div>
     )
 }
