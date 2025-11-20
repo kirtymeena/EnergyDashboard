@@ -43,7 +43,8 @@ function App() {
     },
   ]
 
-  const handleLogin = async (formData) => {
+  const handleLogin = async (e, formData) => {
+    e.preventDefault()
     console.log(formData)
     //for local
     try {
