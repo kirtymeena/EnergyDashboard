@@ -29,7 +29,7 @@ function Login(props) {
     };
 
     return (
-        <div>
+        <form onSubmit={(e) => props.handleSubmit(e, formData)}>
             {/* <Header userLoggedIn={props.userLoggedIn} /> */}
 
             <div className='form-group'>
@@ -73,11 +73,11 @@ function Login(props) {
                         }
                     />
                 </div>
-                <Button variant="contained" onClick={() => props.handleSubmit(formData)}>Login</Button>
+                <Button variant="contained">Login</Button>
 
             </div>
             footer
-        </div>
+        </form>
     )
 }
 
