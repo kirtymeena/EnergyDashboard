@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 import { CgProfile } from "react-icons/cg";
 
 
-function Sidebar({ menuOptions, isSelected, setIsSelected, selectedLink, setSelectedLink }) {
+function Sidebar({ menuOptions, isSelected, setIsSelected, selectedLink, setSelectedLink, userData }) {
 
     const handleOptions = (id, title) => {
         setIsSelected(id)
@@ -50,7 +50,7 @@ function Sidebar({ menuOptions, isSelected, setIsSelected, selectedLink, setSele
 
             <div className='user__login'>
                 <CgProfile size={"24px"} />
-                User name
+                {userData}
             </div>
         </div>
     )

@@ -17,6 +17,7 @@ import Footer from "./components/Footer/Footer"
 function App() {
 
   const [userLoggedIn, setUserLoggedIn] = useState(false)
+  const [userData, setUserData] = useState(null)
   const [mapData, setMapData] = useState(null)
   const [isSelected, setIsSelected] = useState(1)
   const [selectedLink, setSelectedLink] = useState("Dashboard")
@@ -54,6 +55,7 @@ function App() {
       if (res.data?.token) {
         sessionStorage.setItem("token", res.data.token)
         setUserLoggedIn(true)
+        setUserData(formData?.username)
       }
     } catch (err) {
       if (err.status === 401) {
@@ -180,7 +182,7 @@ function App() {
     return (
       <div className="layout">
         <div className="layout-md">
-          <Sidebar menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />
+          <Sidebar userData={userData} menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />
           <div className="outlet-md">
             <div>
               <Outlet />
