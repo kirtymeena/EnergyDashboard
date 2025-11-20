@@ -47,9 +47,9 @@ function App() {
     //for local
     try {
       //deployed
-      axios.get("/api/login")
+      const res = axios.get("/api/login")
       //local
-      const res = await axios.post("/sems/api/login.php", formData)
+      // const res = await axios.post("/sems/api/login.php", formData)
       console.log(res.data.token)
       if (res.data?.token) {
         sessionStorage.setItem("token", res.data.token)
