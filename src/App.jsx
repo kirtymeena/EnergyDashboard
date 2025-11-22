@@ -148,17 +148,17 @@ function App() {
     <Router>
       <Routes>
         {
-          userLoggedIn ?
-
+          !userLoggedIn ?
+            <Route>
+              <Route index path="/" element={<Login userLoggedIn={userLoggedIn} handleSubmit={handleLogin} error={error} />} />
+            </Route> :
             <Route element={<Layout />}>
               <Route index path="/" element={<Home fibercuts={totalFiberCuts} totalSiteCount={totalSiteCount} sites={sites} menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} map={mapData} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />} />
               <Route path="/sites/:siteId" element={<SitePage userLoggedIn={userLoggedIn} menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} map={mapData} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />} />
               <Route path="/Reports" element={<Reports />} />
               <Route path="/Configuration" element={<NotFound />} />
-            </Route> :
-            <Route>
-              <Route index path="/" element={<Login userLoggedIn={userLoggedIn} handleSubmit={handleLogin} error={error} />} />
             </Route>
+
         }
       </Routes>
     </Router>

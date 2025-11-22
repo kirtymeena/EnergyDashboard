@@ -82,7 +82,7 @@ function Home({ fibercuts, alarms, totalSiteCount, siteDataArray, map, selectedL
                     </div>
                     <div className='home__graph'>
 
-                        <Card sx={{ minWidth: 275, background: "#4682DA" }}>
+                        <Card sx={{ minWidth: 275 }}>
                             <SimpleLineChart />
                         </Card>
                     </div>
@@ -96,7 +96,6 @@ function Home({ fibercuts, alarms, totalSiteCount, siteDataArray, map, selectedL
                     </div>
 
                 </div>
-                <CustomDialog open={openDialog} setOpenDialog={setOpenDialog} />
             </div>
         </div>
     )

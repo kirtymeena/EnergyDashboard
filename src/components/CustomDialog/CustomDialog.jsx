@@ -10,6 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import "./customDialog.scss"
 import { Link } from 'react-router';
+import { Divider } from '@mui/material';
 function CustomDialog(props) {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         '& .MuiDialogContent-root': {
@@ -34,14 +35,14 @@ function CustomDialog(props) {
             slotProps={{
                 paper: {
                     sx: {
-                        width: "70%",
+                        width: "50%",
                         maxWidth: "70%"
                     }
                 }
             }}
         >
             <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                Modal title
+                Sites
             </DialogTitle>
             <IconButton
                 aria-label="close"
@@ -55,29 +56,16 @@ function CustomDialog(props) {
             >
                 <CloseIcon />
             </IconButton>
-            <DialogContent dividers>
-                <table className='table-container' style={{ width: "100%" }}>
-                    <tr className='table-header'>
-                        <th>Site ID</th>
-                        <th>Alarm Date And Time</th>
-                        <th>Cleared Date Time</th>
-                    </tr>
-                    <tr>
-                        <td><Link to="/dashboard">A1</Link></td>
-                        <td>date time</td>
-                        <td>date time</td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>date time</td>
-                        <td>date time</td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>date time</td>
-                        <td>date time</td>
-                    </tr>
-                </table>
+            <DialogContent dividers style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+                <div className="dialogContent__wrapper">
+                    <div>Site</div>
+                    <div>Date</div>
+                </div>
+                <Divider />
+                <div className="dialogContent__wrapper">
+                    <div>alarm</div>
+                    <div>Date</div>
+                </div>
             </DialogContent>
             <DialogActions>
                 {/* <Button autoFocus onClick={handleClose}>

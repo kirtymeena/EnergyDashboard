@@ -3,18 +3,24 @@ import api, { attachInterceptors } from "../../api/axios";
 import axios from "axios";
 
 // Async thunk: login
-export const login = createAsyncThunk("auth/login", async (formData) => {
+export const login = createAsyncThunk("auth/login", async (formData, { rejectWithValue }) => {
     try {
         const res = await api.post("/login.php", formData);
-        // if (res?.status === "success" && res.token) {
-        // store token persistently
-        localStorage.setItem("token", res.data.token);
-        console.log("data", res)
-        return { token: res.data.token };
-        // }
+        if (res?.status === 200) {
+            // store token persistently
+            localStorage.setItem("token", res.data.token);
+            console.log(res)
+            return { token: res.data.token };
+        }
+        else {
+            return rejectWithValue(res.data.error);
+            // throw new Error(res.error)
+        }
         // return rejectWithValue(data);
     } catch (err) {
-        return { message: err.message };
+        // console.log("err", err.response.data.error)
+        // return { message: err.response.data.error };
+        return rejectWithValue(err.response?.data?.error || "Network error");
     }
 }
 );
@@ -38,6 +44,7 @@ const initialState = {
     user: null,
     status: "idle",
     error: null,
+    temp: ''
 };
 
 const authSlice = createSlice({
@@ -59,14 +66,19 @@ const authSlice = createSlice({
         builder
             .addCase(login.pending, (s) => { s.status = "loading"; s.error = null; })
             .addCase(login.fulfilled, (s, action) => {
-                s.status = "succeeded";
+                s.status = "fulfilled";
                 s.token = action.payload.token;
                 localStorage.setItem("token", s.token)
-                s.error = null;
+                if (action.payload?.error) {
+                    s.temp = action.payload
+                }
+                else {
+                    s.error = null;
+                }
             })
             .addCase(login.rejected, (s, action) => {
                 s.status = "failed";
-                s.error = action.error;
+                s.error = action.payload;
             })
             //validate token    
             .addCase(validateToken.pending, (s) => { s.status = "loading"; s.error = null; })

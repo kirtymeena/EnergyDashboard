@@ -14,14 +14,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getAlarmData } from "../../store/slices/AlarmSlice";
-
+import { Link } from "react-router";
+import CustomDialog from "../CustomDialog/CustomDialog";
 
 
 
 function CustomDataTable() {
     const dispatch = useDispatch()
     const alarms = useSelector((state) => state.alarms.alarmData);
-
+    const [open, setOpen] = useState(false)
     // const alarmData = useSelector(state=>state.)
     const [search, setSearch] = useState("");
     const [severity, setSeverity] = useState("All");
@@ -40,7 +41,18 @@ function CustomDataTable() {
 
     /** Column definitions for MUI DataGrid */
     const columns = [
-        { field: "alarm", headerName: "Alarm", flex: 1, align: "left" },
+        {
+            field: "alarm", headerName: "Alarm", flex: 1, align: "left", renderCell: (params) => {
+                const count = params.row.count;
+                return count > 0 ? (
+                    <Link style={{ textDecoration: "underline", color: "#1976d2" }} onClick={() => setOpen(true)}>
+                        {params.row.alarm}
+                    </Link>
+                ) : (
+                    <span>{params.row.alarm}</span>
+                );
+            },
+        },
         { field: "count", headerName: "Count", width: 120, },
         { field: "severity", headerName: "Severity", width: 150, },
     ];
@@ -48,7 +60,7 @@ function CustomDataTable() {
     const filteredRows = useMemo(() => {
         if (!data) return [];
 
-        return data?.filter(item =>
+        return (data || alarms)?.filter(item =>
             item.alarm.toLowerCase().includes(search.toLowerCase())
         )
             .filter(item =>
@@ -104,6 +116,8 @@ function CustomDataTable() {
             ) : (
                 <Typography>No readings found</Typography>
             )}
+            <CustomDialog open={open} setOpenDialog={setOpen} />
+
         </div>
     )
 }

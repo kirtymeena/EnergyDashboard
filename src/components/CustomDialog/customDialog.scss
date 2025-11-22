@@ -15,6 +15,12 @@ tr:nth-child(odd) {
     background-color: #dddddd;
 }
 
+.dialogContent__wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 1rem
+}
+
 // .table-header {
 //     background: #303b4ed2
 // }

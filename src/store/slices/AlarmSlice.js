@@ -51,9 +51,11 @@ const alarmSlice = createSlice({
     initialState,
     reducers: {
         getFiberCuts(state) {
-            const fiberCuts = state.alarmData?.filter(ele => ele.alarm === "Fiber Cut")
-            console.log(fiberCuts)
-            state.totalFibercuts = fiberCuts[0]?.count;
+            if (state.alarmData.length > 0) {
+                const fiberCuts = state?.alarmData?.filter(ele => ele.alarm === "Fiber Cut")
+                console.log(fiberCuts)
+                state.totalFibercuts = fiberCuts[0]?.count;
+            }
         },
     },
     extraReducers: (builder) => {

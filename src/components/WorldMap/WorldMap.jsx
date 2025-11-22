@@ -15,7 +15,7 @@ function WorldMap(props) {
             html: `<div style="
       width: 12px;
       height: 12px;
-      background: #3F51B5;
+      background: #4682DA;
       border-radius: 50%;
       border: 2px solid white;
       "></div>`,

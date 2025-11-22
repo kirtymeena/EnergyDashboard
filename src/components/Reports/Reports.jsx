@@ -12,14 +12,22 @@ function Reports() {
     const [to, setTo] = useState(null);
     const [from, setFrom] = useState(null);
     const [siteIds, setSiteIds] = useState(''); // string, comma-separated
-
+    const [error, setError] = useState(null)
     const getFile = async (start_date, end_date, site_id) => {
         try {
             const res = await api.get(`/readings_export.php?start_date=${start_date}&end_date=${end_date}&site_id=${site_id}`, {
                 responseType: 'arraybuffer', // important for ZIP files
 
             })
+
             console.log(res)
+            const contentType = res.headers['content-type'];
+            if (contentType === 'application/json') {
+                console.log("Invalid Date or Site Id")
+                setError("Invalid Date or Site Id")
+                return
+            }
+            console.log("contentType", contentType)
             const blob = new Blob([res.data], { type: 'application/zip' });
 
             // Create a URL for the blob
@@ -85,7 +93,7 @@ function Reports() {
             </div>
             <div>
                 <Button type="submit" variant="contained">Generate</Button>
-
+                <p style={{ color: "tomato", marginTop: "16px" }}>{error}</p>
             </div>
         </form>
     )

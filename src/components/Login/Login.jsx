@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../Header/Header'
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
@@ -16,6 +16,7 @@ import { login } from '../../store/slices/authSlice';
 
 function Login(props) {
     const dispatch = useDispatch()
+    const errorMsg = useSelector(state => state.auth.error)
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -35,6 +36,10 @@ function Login(props) {
         e.preventDefault()
         dispatch(login(formData))
     }
+
+    useEffect(() => {
+        console.log("hdbf", errorMsg)
+    }, [errorMsg])
     return (
         <form onSubmit={onSubmit}>
             <div className='form-group'>
@@ -78,6 +83,7 @@ function Login(props) {
                         }
                     />
                 </div>
+                <p style={{ color: "tomato", marginTop: "16px" }}>{errorMsg}</p>
                 <Button type='submit' variant="contained">Login</Button>
 
             </div>

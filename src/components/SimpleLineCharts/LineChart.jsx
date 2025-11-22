@@ -18,7 +18,7 @@ const SimpleLineChart = () => {
     return (
         <div
             style={{
-                background: "#4682DA",
+                background: "white",
                 padding: "20px",
                 borderRadius: "12px",
                 color: "white",
@@ -35,7 +35,7 @@ const SimpleLineChart = () => {
                 series={[
                     {
                         data: values,
-                        color: "white",
+                        color: "#212121",
                         showMark: true,
                         markSize: 6,
                         curve: "smooth", // You can use "smooth" for curves
@@ -43,7 +43,7 @@ const SimpleLineChart = () => {
                 ]}
                 width={550}
                 height={300}
-                grid={{ vertical: false, horizontal: false }}
+                grid={{ vertical: true, horizontal: false }}
             />
         </div >
     );
