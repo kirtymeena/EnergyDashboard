@@ -31,7 +31,9 @@ function AlarmCard(props) {
     const progress = <BorderLinearProgress variant="determinate" value={50} />
     return (
         // <div className='card_alaram'>
-        <Card className='card_alaram' onClick={() => props.setOpenDialog(true)}>
+        <Card className='card_alaram'
+        // onClick={() => props.setOpenDialog(true)}
+        >
             <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
                 <div className='cardAlarm_content'>
                     <Typography gutterBottom sx={{ color: 'text.primary', fontSize: 18 }}>

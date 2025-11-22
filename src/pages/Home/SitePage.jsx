@@ -8,6 +8,8 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from "react-router-dom";
 import CustomAlert from '../../components/CustomAlert/CustomAlert';
+import api from '../../api/axios';
+import Header from '../../components/Header/Header';
 
 function SitePage({ userLoggedIn, selectedLink, isSelected, setIsSelected, menuOptions, setSelectedLink }) {
     //complete site data
@@ -20,11 +22,7 @@ function SitePage({ userLoggedIn, selectedLink, isSelected, setIsSelected, menuO
             // const res = await axios.get("/api/pull-values");
 
             //local
-            const res = await axios.get(`/sems/api/get_readings.php?site_id=${siteId}`, {
-                headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-                }
-            },)
+            const res = await api.get(`/get_readings.php?site_id=${siteId}`)
 
             console.log(res)
             const data = res.data
@@ -87,7 +85,7 @@ function SitePage({ userLoggedIn, selectedLink, isSelected, setIsSelected, menuO
                         { title: "Mains / Battery", value: data.alarm4 },
                         { title: "Battery Health", value: data.alarm5 },
                         { title: "Fiber Cut", value: data.alarm6 },
-                        { title: "Rectifier Fail", value: data?.alarm7 || "" },
+                        // { title: "Rectifier Fail", value: data?.alarm7 || "" },
                     ],
                 },
                 {
@@ -129,6 +127,7 @@ function SitePage({ userLoggedIn, selectedLink, isSelected, setIsSelected, menuO
     return idLoading ? "loading" :
         (
             <div>
+                {/* <Header selectedLink={"Site Details"} /> */}
                 <div className='home__wrapper'>
                     <div className='home__right'>
                         {error && <CustomAlert />}

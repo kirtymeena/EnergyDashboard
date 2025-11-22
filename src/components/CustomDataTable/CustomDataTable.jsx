@@ -12,37 +12,30 @@ import {
 import { DataGrid } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { getAlarmData } from "../../store/slices/AlarmSlice";
 
 
 
 
 function CustomDataTable() {
+    const dispatch = useDispatch()
+    const alarms = useSelector((state) => state.alarms.alarmData);
+
+    // const alarmData = useSelector(state=>state.)
     const [search, setSearch] = useState("");
     const [severity, setSeverity] = useState("All");
     const [cardData, setCardData] = useState([])
     /** React Query */
-    const fetchAlarms = async () => {
-        const token = sessionStorage.getItem("token");
-
-        const res = await axios.get("/sems/api/alarms_table.php", {
-            headers: { Authorization: `Bearer ${token}` },
-        });
-
-
-        if (res.data?.length > 0) {
-            const fiberCuts = res.data?.filter(ele => ele.alarm === "Fiber Cut")
-            sessionStorage.setItem("totalAlarms", res.data.length)
-            sessionStorage.setItem("totalFiberCuts", fiberCuts[0].count)
-            console.log("alarms", res.data)
-        }
-        return res.data;
-    };
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ["alarms-table"],
-        queryFn: fetchAlarms,
-        refetchInterval: 30 * 60 * 1000, // 🔁 auto-refresh every 30 minutes
-        refetchOnWindowFocus: false,
+        queryFn: () => dispatch(getAlarmData()).unwrap(),
+        refetchInterval: 900000,
+        refetchIntervalInBackground: true,
+        refetchOnReconnect: true,
+        // Refetch when window is refocused (optional)
+        refetchOnWindowFocus: true,
     });
 
     /** Column definitions for MUI DataGrid */
@@ -55,10 +48,9 @@ function CustomDataTable() {
     const filteredRows = useMemo(() => {
         if (!data) return [];
 
-        return data
-            .filter(item =>
-                item.alarm.toLowerCase().includes(search.toLowerCase())
-            )
+        return data?.filter(item =>
+            item.alarm.toLowerCase().includes(search.toLowerCase())
+        )
             .filter(item =>
                 severity === "All" ? true : item.severity === severity
             )
@@ -71,8 +63,8 @@ function CustomDataTable() {
 
     useEffect(() => {
         // total alarm counts
-
-    }, [data])
+        dispatch(getAlarmData())
+    }, [dispatch])
     return (
         <div style={{ height: "370px" }}>
 

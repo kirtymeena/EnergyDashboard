@@ -8,11 +8,14 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
+import { useSelector, useDispatch } from "react-redux";
 
 import "./login.scss"
 import Logo from '../icons/Logo';
+import { login } from '../../store/slices/authSlice';
 
 function Login(props) {
+    const dispatch = useDispatch()
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -28,10 +31,12 @@ function Login(props) {
         event.preventDefault();
     };
 
+    const onSubmit = (e) => {
+        e.preventDefault()
+        dispatch(login(formData))
+    }
     return (
-        <form onSubmit={(e) => props.handleSubmit(e, formData)}>
-            {/* <Header userLoggedIn={props.userLoggedIn} /> */}
-
+        <form onSubmit={onSubmit}>
             <div className='form-group'>
                 <Logo color={'#aedf33'} />
 

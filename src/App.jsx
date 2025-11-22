@@ -13,20 +13,30 @@ import Product from "./components/icons/Product"
 import SitePage from "./pages/Home/SitePage"
 import Footer from "./components/Footer/Footer"
 import { useSites } from "./siteQuery"
+import { useSelector, useDispatch } from "react-redux";
+import { getFiberCuts, getSites } from "./store/slices/AlarmSlice"
+import Reports from "./components/Reports/Reports"
+import { useQuery } from "@tanstack/react-query"
+import api from "./api/axios"
+import useCheckToken from "./hooks/useCheckToken"
 
 
 function App() {
 
-  const [userLoggedIn, setUserLoggedIn] = useState(false)
+  const userLoggedIn = useSelector(state => state.auth.token)
+  const dispatch = useDispatch()
   const [userData, setUserData] = useState(null)
   const [mapData, setMapData] = useState(null)
   const [isSelected, setIsSelected] = useState(1)
   const [selectedLink, setSelectedLink] = useState("Dashboard")
   const [error, setError] = useState(null)
-  const { data: sites = [], isLoading } = useSites();
-  const { data: alarms = [] } = useSites()
-  const [totalSiteCount, setTotalSiteCounts] = useState(0)
-  const [totalAlarm, setTotalAlarm] = useState(sessionStorage.getItem("totalAlarms"))
+  // const { data: sites = [], isLoading } = useSites();
+  const sites = useSelector((state) => state.alarms.sitesMap)
+  // const { data: alarms = [] } = useSites()
+  const totalSiteCount = useSelector((state) => state.alarms.totalSite)
+  const totalFiberCuts = useSelector((state) => state.alarms.totalFibercuts)
+  const { data, isLoading, isError } = useCheckToken();
+
   const menuOptions = [
     {
       id: 1,
@@ -40,18 +50,23 @@ function App() {
       icon: <MdBarChart size={"24px"} id="chart" />,
       link: "Reports"
     },
-    {
-      id: 3,
-      title: 'Configuration',
-      icon: <Product />,
-      link: "Configuration"
-    },
+    // {
+    //   id: 3,
+    //   title: 'Configuration',
+    //   icon: <Product />,
+    //   link: "Configuration"
+    // },
   ]
-
   useEffect(() => {
-    setTotalSiteCounts(sites.count)
-    console.log(sites)
-  }, [sites])
+    if (userLoggedIn) {
+      dispatch(getSites())
+      dispatch(getFiberCuts())
+    }
+
+  }, [dispatch, userLoggedIn])
+
+
+
 
   // useEffect(() => {
   //   console.log("totalCount", totalCount)
@@ -69,7 +84,7 @@ function App() {
       console.log(res.data.token)
       if (res.data?.token) {
         sessionStorage.setItem("token", res.data.token)
-        setUserLoggedIn(true)
+        // setUserLoggedIn(true)
         setUserData(formData?.username)
       }
     } catch (err) {
@@ -84,11 +99,11 @@ function App() {
 
   }
 
-  useEffect(() => {
-    if (sessionStorage.getItem('token')) {
-      setUserLoggedIn(true)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (sessionStorage.getItem('token')) {
+  //     setUserLoggedIn(true)
+  //   }
+  // }, [])
 
 
 
@@ -114,6 +129,7 @@ function App() {
         <div className="layout-md">
           <Sidebar userData={userData} menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />
           <div className="outlet-md">
+            <Header selectedLink={selectedLink} />
             <div>
               <Outlet />
             </div>
@@ -128,9 +144,6 @@ function App() {
       </div>
     )
   }
-  useEffect(() => {
-    console.log("updated")
-  }, [totalAlarm])
   return (
     <Router>
       <Routes>
@@ -138,9 +151,9 @@ function App() {
           userLoggedIn ?
 
             <Route element={<Layout />}>
-              <Route index path="/" element={<Home totalSiteCount={totalSiteCount} sites={sites.sites} menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} map={mapData} selectedLink={selectedLink} setSelectedLink={setSelectedLink} setUserLoggedIn={setUserLoggedIn} />} />
+              <Route index path="/" element={<Home fibercuts={totalFiberCuts} totalSiteCount={totalSiteCount} sites={sites} menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} map={mapData} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />} />
               <Route path="/sites/:siteId" element={<SitePage userLoggedIn={userLoggedIn} menuOptions={menuOptions} isSelected={isSelected} setIsSelected={setIsSelected} map={mapData} selectedLink={selectedLink} setSelectedLink={setSelectedLink} />} />
-              <Route path="/Reports" element={<NotFound />} />
+              <Route path="/Reports" element={<Reports />} />
               <Route path="/Configuration" element={<NotFound />} />
             </Route> :
             <Route>
