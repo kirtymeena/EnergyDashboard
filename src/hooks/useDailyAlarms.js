@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 const fetchDailyAlarms = async () => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     const res = await fetch("/sems/api/alarms_daily.php", {
         headers: {
@@ -24,6 +24,8 @@ export const useDailyAlarms = () =>
         queryFn: fetchDailyAlarms,
 
         // 🔁 every 30 min (1800000 ms)
-        refetchInterval: 30 * 60 * 1000,
-        refetchOnWindowFocus: false,
+        refetchInterval: 30 * 60 * 1000, // ⏱️ 30 minutes
+        refetchIntervalInBackground: true, // ✅ continues even when tab is inactive
+        refetchOnReconnect: true,
+        refetchOnWindowFocus: true,
     });

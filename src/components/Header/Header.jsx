@@ -2,11 +2,12 @@
 // import SearchBar from "../searchbar/Searchbar";
 import "./header.scss"
 import TextField from '@mui/material/TextField';
-
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../store/slices/authSlice";
 function Header({ userLoggedIn, selectedLink, setUserLoggedIn }) {
+    const dispatch = useDispatch()
     const handleLogout = () => {
-        setUserLoggedIn(false)
-        sessionStorage.removeItem('token')
+        dispatch(logout())
     }
     return (
         <div className="header__container" style={{ background: userLoggedIn ? "rgb(3, 35, 19)" : "white" }}>

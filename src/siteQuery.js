@@ -8,7 +8,7 @@ export function useSites() {
         queryFn: async () => {
             const res = await axios.get("/sems/api/get_sites.php", {
                 headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
 
@@ -26,6 +26,7 @@ export function useSites() {
         refetchOnReconnect: true,
         // Refetch when window is refocused (optional)
         refetchOnWindowFocus: true,
+
 
         // // Cache the data for 15 minutes too
         // staleTime: 900000,

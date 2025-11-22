@@ -3,7 +3,8 @@
 .card_alaram {
     width: 300px;
     height: 9rem;
-    cursor: pointer;
+    // cursor: pointer;
+    cursor: default;
 
     @include md {
         // min-width: 379px;

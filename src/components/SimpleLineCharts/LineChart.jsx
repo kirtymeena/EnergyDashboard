@@ -1,9 +1,9 @@
 import React from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { useDailyAlarms } from "../../hooks/useDailyAlarms";
+
 const SimpleLineChart = () => {
     const { data, isLoading, isError, error } = useDailyAlarms();
-
     if (isLoading) return <p style={{ color: "white" }}>Loading chart...</p>;
     if (isError) return <p style={{ color: "white" }}>{error.message}</p>;
 
@@ -41,7 +41,7 @@ const SimpleLineChart = () => {
                         curve: "smooth", // You can use "smooth" for curves
                     },
                 ]}
-                width={400}
+                width={550}
                 height={300}
                 grid={{ vertical: false, horizontal: false }}
             />

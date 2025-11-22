@@ -15,6 +15,7 @@ import Footer from '../../components/Footer/Footer';
 // import "primeicons/primeicons.css";
 import AlarmCard from '../../components/cards/AlarmCard';
 import Card from '@mui/material/Card';
+import { useSelector, useDispatch } from "react-redux";
 
 import { FaBroadcastTower } from "react-icons/fa";
 
@@ -26,51 +27,53 @@ import SimpleLineChart from '../../components/SimpleLineCharts/LineChart';
 import { MdNotificationsActive } from "react-icons/md";
 import { RiScissorsCutFill } from "react-icons/ri";
 import CustomDataTable from '../../components/CustomDataTable/CustomDataTable';
+import { getFiberCuts, getSites } from '../../store/slices/AlarmSlice';
 
-function Home({ alarms, totalSiteCount, siteDataArray, map, selectedLink, isSelected, setIsSelected, menuOptions, setSelectedLink, setUserLoggedIn, sites }) {
-
+function Home({ fibercuts, alarms, totalSiteCount, siteDataArray, map, selectedLink, isSelected, setIsSelected, menuOptions, setSelectedLink, sites }) {
+    const totalAlarms = useSelector(state => state.alarms.totalAlarms)
+    const totalFiberCuts = useSelector(state => state.alarms.totalFibercuts)
     const [openDialog, setOpenDialog] = useState(false)
-    const [storageValues, setStorageValues] = useState({
-        totalAlarms: sessionStorage.getItem("totalAlarms") || 0,
-        totalFiberCuts: sessionStorage.getItem("totalFiberCuts") || 0,
-    });
+        ;
+    const dispatch = useDispatch()
 
+    useEffect(() => {
+        if (totalAlarms) {
+            dispatch(getFiberCuts())
+        }
+    }, [dispatch, totalAlarms])
     // 🔥 Listen to storage changes (even from other components)
     useEffect(() => {
-        const updateValues = () => {
-            setStorageValues({
-                totalAlarms: sessionStorage.getItem("totalAlarms") || 0,
-                totalFiberCuts: sessionStorage.getItem("totalFiberCuts") || 0,
-            });
-        };
-
-        // Custom event listener — we trigger this manually from anywhere
-        window.addEventListener("session-update", updateValues);
-
-        return () => window.removeEventListener("session-update", updateValues);
-    }, []);
+        console.log("fibercuts", totalFiberCuts)
+    }, [])
     const cardsData = [
         {
             title: "Total Sites",
-            count: totalSiteCount || 0,
+            count: totalSiteCount,
             icon: <FaBroadcastTower size={60} />
         },
         {
             title: "Total Alarm",
-            count: storageValues.totalAlarms,
+            count: totalAlarms,
             icon: <MdNotificationsActive size={60} />
         },
         {
             title: "Total Fiber Cuts",
-            count: storageValues.totalFiberCuts,
+            count: totalFiberCuts || fibercuts,
             icon: <RiScissorsCutFill size={60} />
         },
     ];
 
 
+    // useEffect(() => {
+    //     dispatch((getSites()))
+    // }, [dispatch])
+
+    // useEffect(() => {
+    //     console.log("sitesF", sitesf)
+    // }, [sitesf])
     return (
         <div className='home__container'>
-            <Header selectedLink={selectedLink} setUserLoggedIn={setUserLoggedIn} />
+            {/* <Header selectedLink={selectedLink} /> */}
             <div className='home__wrapper-center'>
                 <div className='home__inner'>
                     {
