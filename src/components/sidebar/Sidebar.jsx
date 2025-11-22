@@ -17,7 +17,7 @@ function Sidebar({ menuOptions, isSelected, setIsSelected, selectedLink, setSele
         <div className='sidebar__container'>
             <Link to="/" className='sidebar__logo'>
                 <Logo color={'#aedf33'} />
-                <span className='logo-text'>Veer Connects India</span>
+                <span className='logo-text'>SEMS: SMART ENERGY MONITORING SYSTEM</span>
             </Link>
             <div className='menu__options'>
                 <div className='options'>
@@ -48,10 +48,10 @@ function Sidebar({ menuOptions, isSelected, setIsSelected, selectedLink, setSele
             <Divider variant="middle" style={{ borderColor: "rgb(233 233 233 / 24%)" }} />
 
 
-            <div className='user__login'>
+            {/* <div className='user__login'>
                 <CgProfile size={"24px"} />
                 {userData}
-            </div>
+            </div> */}
         </div>
     )
 }

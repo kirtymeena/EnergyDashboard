@@ -32,20 +32,21 @@ function AlarmCard(props) {
     return (
         // <div className='card_alaram'>
         <Card className='card_alaram' onClick={() => props.setOpenDialog(true)}>
-            <CardContent>
+            <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
                 <div className='cardAlarm_content'>
-                    <Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-                        Alarm name
+                    <Typography gutterBottom sx={{ color: 'text.primary', fontSize: 18 }}>
+                        {props.title}
                     </Typography>
                     {/* <Typography variant="h5" component="div">
                     be{bull}nev{bull}o{bull}lent
                 </Typography> */}
-                    <Typography sx={{ color: 'text.secondary', mb: 1.5 }}>Count of Alarm</Typography>
+                    <Typography sx={{ color: "#4682DA", mb: 1.5, fontSize: 35, fontWeight: 600 }}>{props.count}</Typography>
                 </div>
                 <div className='cardAlarm__bottom'>
-                    <div class="progress">
-                        <div class="progress-fill" style={{ width: "45%" }}></div>
-                    </div>
+                    {/* <div class="progress"> */}
+                    {props.icon}
+                    {/* <div class="progress-fill" style={{ width: "45%" }}></div> */}
+                    {/* </div> */}
                 </div>
             </CardContent>
             {/* <CardActions>

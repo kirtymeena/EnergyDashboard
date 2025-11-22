@@ -6,7 +6,8 @@
     cursor: pointer;
 
     @include md {
-        min-width: 379px;
+        // min-width: 379px;
+        min-width: 421px;
     }
 }
 
