@@ -63,14 +63,6 @@ function Home({ fibercuts, alarms, totalSiteCount, siteDataArray, map, selectedL
         },
     ];
 
-
-    // useEffect(() => {
-    //     dispatch((getSites()))
-    // }, [dispatch])
-
-    // useEffect(() => {
-    //     console.log("sitesF", sitesf)
-    // }, [sitesf])
     return (
         <div className='home__container'>
             {/* <Header selectedLink={selectedLink} /> */}
