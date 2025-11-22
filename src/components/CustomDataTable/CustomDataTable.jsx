@@ -27,6 +27,7 @@ function CustomDataTable() {
     const [search, setSearch] = useState("");
     const [severity, setSeverity] = useState("All");
     const [cardData, setCardData] = useState([])
+    const [selectedAlarm, setSelectedAlarm] = useState(null)
     /** React Query */
 
     const { data, isLoading, isError } = useQuery({
@@ -45,7 +46,7 @@ function CustomDataTable() {
             field: "alarm", headerName: "Alarm", flex: 1, align: "left", renderCell: (params) => {
                 const count = params.row.count;
                 return count > 0 ? (
-                    <Link style={{ textDecoration: "underline", color: "#1976d2" }} onClick={() => setOpen(true)}>
+                    <Link style={{ textDecoration: "underline", color: "#1976d2" }} onClick={() => { setOpen(true); setSelectedAlarm(params.row.alarm) }}>
                         {params.row.alarm}
                     </Link>
                 ) : (
@@ -78,7 +79,7 @@ function CustomDataTable() {
         dispatch(getAlarmData())
     }, [dispatch])
     return (
-        <div style={{ height: "370px" }}>
+        <div style={{ height: "474px" }}>
 
             {/* Filters */}
 
@@ -104,7 +105,7 @@ function CustomDataTable() {
                     pagination
                     initialState={{
                         pagination: {
-                            paginationModel: { pageSize: 5, page: 0 }
+                            paginationModel: { pageSize: 7, page: 0 }
                         }
                     }}
                     rows={filteredRows}
@@ -116,7 +117,7 @@ function CustomDataTable() {
             ) : (
                 <Typography>No readings found</Typography>
             )}
-            <CustomDialog open={open} setOpenDialog={setOpen} />
+            <CustomDialog open={open} setOpenDialog={setOpen} alarm={selectedAlarm} />
 
         </div>
     )

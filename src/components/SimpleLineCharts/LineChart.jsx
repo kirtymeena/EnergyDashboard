@@ -15,6 +15,7 @@ const SimpleLineChart = () => {
         const d = new Date(dateStr);
         return d.toLocaleDateString("en-US", { day: "numeric", month: "short" });
     });
+
     return (
         <div
             style={{
@@ -24,14 +25,18 @@ const SimpleLineChart = () => {
                 color: "white",
                 minWidth: "100%",
                 maxWidth: "400px",
-                height: "370px"
+                height: "474px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between"
             }}
         >
-            <h3 style={{ margin: 0 }}>Alarms — Last 7 Days</h3>
-            <p style={{ opacity: 0.8, marginTop: 0 }}>Total Alarms</p>
+            <h3 style={{ margin: 0, color: "#212121" }}>Alarms — Last 7 Days</h3>
+            <p style={{ opacity: 0.8, marginTop: 0, color: "#212121" }}>Total Alarms</p>
 
             <LineChart
-                xAxis={[{ scaleType: "point", data: formattedDates }]}
+                xAxis={[{ scaleType: "point", data: formattedDates, }]}
+                yAxis={[{ label: "No. of Alarms" }]}
                 series={[
                     {
                         data: values,
